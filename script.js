@@ -291,3 +291,25 @@ document
 
     showMessage();
   }, { passive: true });
+// Obtener elementos
+const messageButton = document.getElementById('messageButton');
+const bgMusic = document.getElementById('bgMusic');
+
+// ... resto de tus variables de elementos (photo, viewer, etc.) ...
+
+let isMusicPlaying = false;
+
+// Al abrir el botón por primera vez
+messageButton.addEventListener('click', () => {
+  // Reproducir música si aún no ha iniciado
+  if (bgMusic && !isMusicPlaying) {
+    bgMusic.play().then(() => {
+      isMusicPlaying = true;
+    }).catch(err => {
+      console.log("El navegador bloqueó la reproducción automática:", err);
+    });
+  }
+
+  // Abrir visor de fotos
+  openViewer();
+});
