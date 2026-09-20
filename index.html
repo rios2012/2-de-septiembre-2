@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Flores amarillas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="scene">
+    <canvas id="particles"></canvas>
+
+    <!-- TEXTO DE LA ESCENA -->
+    <header class="texts">
+      <h1>Feliz día de las flores<br>amarillas</h1>
+      <p>Ten tu ramo bonita</p>
+    </header>
+
+    <!-- MARIPOSAS PEQUEÑAS -->
+    <div class="butterflies" aria-hidden="true">
+      <span class="butterfly b1">🦋</span>
+      <span class="butterfly b2">🦋</span>
+      <span class="butterfly b3">🦋</span>
+      <span class="butterfly b4">🦋</span>
+      <span class="butterfly b5">🦋</span>
+      <span class="butterfly b6">🦋</span>
+    </div>
+
+    <!-- RAMO DE FLORES PRINCIPAL -->
+    <div class="bouquet-emergence-wrapper">
+        <div class="bouquet-sway-wrapper">
+            <svg class="bouquet-svg" viewBox="0 0 500 650">
+                <defs>
+                    <!-- Gradiente para Pétalos de Girasol -->
+                    <linearGradient id="petalGrad1" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#E66100"/>
+                        <stop offset="25%" stop-color="#FF8C00"/>
+                        <stop offset="65%" stop-color="#FFC107"/>
+                        <stop offset="100%" stop-color="#FFEE55"/>
+                    </linearGradient>
+
+                    <linearGradient id="petalGrad2" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#D84315"/>
+                        <stop offset="30%" stop-color="#FFA000"/>
+                        <stop offset="85%" stop-color="#FFEB3B"/>
+                        <stop offset="100%" stop-color="#FFF59D"/>
+                    </linearGradient>
+
+                    <!-- Textura/Gradiente del Centro Oscuro -->
+                    <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#120803"/>
+                        <stop offset="65%" stop-color="#261206"/>
+                        <stop offset="88%" stop-color="#3d1e0a"/>
+                        <stop offset="100%" stop-color="#1f0d04"/>
+                    </radialGradient>
+
+                    <!-- Patrón de puntos concéntricos para el centro del Girasol -->
+                    <pattern id="centerPattern" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+                        <circle cx="4" cy="4" r="1.5" fill="#0a0401" opacity="0.8"/>
+                        <circle cx="4" cy="4" r="0.7" fill="#5c3317" opacity="0.6"/>
+                    </pattern>
+
+                    <!-- Gradiente de Papel Rosado Trasero -->
+                    <linearGradient id="backPaperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#d6688d"/>
+                        <stop offset="50%" stop-color="#b84d72"/>
+                        <stop offset="100%" stop-color="#8a3050"/>
+                    </linearGradient>
+
+                    <!-- Gradiente de Envoltorio Cristalino Rosado Transparente -->
+                    <linearGradient id="frontGlassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(240, 140, 170, 0.72)"/>
+                        <stop offset="50%" stop-color="rgba(220, 100, 140, 0.65)"/>
+                        <stop offset="100%" stop-color="rgba(190, 70, 110, 0.78)"/>
+                    </linearGradient>
+
+                    <!-- Gradiente Dorado para Adornos -->
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FFF176"/>
+                        <stop offset="50%" stop-color="#FFB300"/>
+                        <stop offset="100%" stop-color="#F57F17"/>
+                    </linearGradient>
+
+                    <!-- DEFINICIÓN DE UN GIRASOL COMPLETO -->
+                    <g id="sunflower-single">
+                        <!-- Tallo verde base -->
+                        <path d="M0,0 L0,120" stroke="#2e5a1c" stroke-width="12" stroke-linecap="round"/>
+                        
+                        <!-- Capa 1: Pétalos Traseros (Naranja/Amarillo) -->
+                        <g>
+                            <!-- 24 Pétalos puntiagudos exteriores -->
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(15)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(30)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(45)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(60)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(75)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(90)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(105)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(120)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(135)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(150)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(165)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(180)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(195)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(210)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(225)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(240)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(255)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(270)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(285)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(300)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(315)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(330)"/>
+                            <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(345)"/>
+                        </g>
+
+                        <!-- Capa 2: Pétalos Delanteros Intercalados (Amarillo más brillante) -->
+                        <g>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(7.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(22.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(37.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(52.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(67.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(82.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(97.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(112.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(127.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(142.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(157.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(172.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(187.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(202.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(217.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(232.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(247.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(262.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(277.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(292.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(307.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(322.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(337.5)"/>
+                            <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(352.5)"/>
+                        </g>
+
+                        <!-- Capa 3: Centro Oscuro del Girasol -->
+                        <circle cx="0" cy="0" r="34" fill="url(#centerGrad)"/>
+                        <circle cx="0" cy="0" r="33" fill="url(#centerPattern)"/>
+                        <circle cx="0" cy="0" r="34" fill="none" stroke="#5c2e0b" stroke-width="2" stroke-dasharray="2,3"/>
+                    </g>
+                </defs>
+
+                <!-- 1. PAPEL DE ENVOLTORIO TRASERO (Puntas Rosa/Púrpura) -->
+                <g id="back-paper">
+                    <polygon points="250,220 50,240 100,380 250,580" fill="url(#backPaperGrad)" opacity="0.95"/>
+                    <polygon points="250,220 450,240 400,380 250,580" fill="url(#backPaperGrad)" opacity="0.85"/>
+                    <polygon points="250,180 150,150 70,260 250,550" fill="#a84467"/>
+                    <polygon points="250,180 350,150 430,260 250,550" fill="#943757"/>
+                </g>
+
+                <!-- 2. TALLOS VERDES VISIBLES Detrás de las Flores -->
+                <g id="stems-and-leaves">
+                    <!-- Hojas verdes grandes -->
+                    <path d="M180,320 Q120,280 100,340 Q150,380 220,350 Z" fill="#2d5e20" stroke="#1d4213" stroke-width="2"/>
+                    <path d="M320,320 Q380,280 400,340 Q350,380 280,350 Z" fill="#244d1a" stroke="#132e0e" stroke-width="2"/>
+                    <path d="M250,280 Q180,220 150,280 Q210,320 250,310 Z" fill="#387029"/>
+                    <path d="M250,280 Q320,220 350,280 Q290,320 250,310 Z" fill="#2f6122"/>
+
+                    <!-- Tallos agrupados que bajan -->
+                    <path d="M160,250 L230,580" stroke="#2a521a" stroke-width="10" stroke-linecap="round"/>
+                    <path d="M200,220 L240,580" stroke="#366623" stroke-width="12" stroke-linecap="round"/>
+                    <path d="M250,200 L250,580" stroke="#234515" stroke-width="14" stroke-linecap="round"/>
+                    <path d="M300,220 L260,580" stroke="#366623" stroke-width="12" stroke-linecap="round"/>
+                    <path d="M340,250 L270,580" stroke="#1e3d12" stroke-width="10" stroke-linecap="round"/>
+                </g>
+
+                <!-- 3. GRUPO DE GIRASOLES -->
+                <g id="sunflowers-group">
+                    <use href="#sunflower-single" x="180" y="140" transform="scale(0.85)" transform-origin="180 140"/>
+                    <use href="#sunflower-single" x="350" y="130" transform="scale(1.05)" transform-origin="350 130"/>
+                    <use href="#sunflower-single" x="120" y="240" transform="scale(0.95)" transform-origin="120 240"/>
+                    <use href="#sunflower-single" x="250" y="190" transform="scale(0.8)" transform-origin="250 190"/>
+                    <use href="#sunflower-single" x="370" y="260" transform="scale(1.0)" transform-origin="370 260"/>
+                    <use href="#sunflower-single" x="190" y="340" transform="scale(0.85)" transform-origin="190 340"/>
+
+                    <g id="center-main-sunflower">
+                        <use href="#sunflower-single" x="250" y="280" transform="scale(1.15)" transform-origin="250 280"/>
+                        
+                        <g transform="translate(240, 245) scale(0.7)">
+                            <path d="M0,0 C-12,-15 -25,-5 -15,10 C-25,20 -10,25 0,5 C10,25 25,20 15,10 C25,-5 12,-15 0,0 Z" fill="none" stroke="#ffe600" stroke-width="2.5"/>
+                            <path d="M0,0 C-8,-10 -16,-3 -10,6 C-16,13 -6,16 0,3 C6,16 16,13 10,6 C16,-3 8,-10 0,0 Z" fill="none" stroke="#fff176" stroke-width="1.5"/>
+                            <circle cx="-3" cy="-10" r="1.5" fill="#ffe600"/>
+                            <circle cx="3" cy="-10" r="1.5" fill="#ffe600"/>
+                        </g>
+                    </g>
+                </g>
+
+                <!-- 4. ENVOLTORIO FRONTAL SEMI-TRANSPARENTE -->
+                <g id="front-wrapper">
+                    <polygon points="250,360 410,380 300,590 200,590 90,380" fill="rgba(0,0,0,0.25)"/>
+                    <polygon points="250,370 410,380 300,590 200,590 90,380" 
+                             fill="url(#frontGlassGrad)" 
+                             stroke="rgba(255, 255, 255, 0.5)" 
+                             stroke-width="1.5"/>
+
+                    <polygon points="250,370 90,380 200,590" fill="rgba(255, 255, 255, 0.08)"/>
+                    <polygon points="250,370 410,380 300,590" fill="rgba(0, 0, 0, 0.06)"/>
+                    <line x1="250" y1="370" x2="250" y2="590" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+                    <polygon points="90,380 250,370 410,380 390,388 250,378 110,388" fill="rgba(255, 255, 255, 0.4)"/>
+
+                    <ellipse cx="145" cy="435" rx="35" ry="14" fill="url(#goldGrad)" transform="rotate(-15, 145, 435)" stroke="#ffe082" stroke-width="1"/>
+                    <ellipse cx="355" cy="435" rx="35" ry="14" fill="url(#goldGrad)" transform="rotate(15, 355, 435)" stroke="#ffe082" stroke-width="1"/>
+
+                    <path d="M115,405 Q155,420 205,425 L205,458 Q155,450 118,432 Z"
+                          fill="url(#goldGrad)" stroke="#ffe082" stroke-width="1.2" opacity="0.95"/>
+                    <path d="M385,405 Q345,420 295,425 L295,458 Q345,450 382,432 Z"
+                          fill="url(#goldGrad)" stroke="#ffe082" stroke-width="1.2" opacity="0.95"/>
+
+                    <rect x="190" y="412" width="120" height="52" rx="5"
+                          fill="url(#goldGrad)" stroke="#fff8e1" stroke-width="1.8"/>
+                    <rect x="196" y="418" width="108" height="40" rx="3"
+                          fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1"/>
+
+                    <text x="250" y="447"
+                          text-anchor="middle"
+                          font-family="Georgia, serif"
+                          font-size="28"
+                          font-weight="700"
+                          fill="#5a3200"
+                          stroke="rgba(255,255,255,0.35)"
+                          stroke-width="0.7">Andy</text>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <!-- BOTÓN DE MENSAJES -->
+    <button id="messageButton" class="message-button" aria-label="Abrir mensajes">
+      <span class="envelope">
+        <span class="flap"></span>
+      </span>
+    </button>
+
+    <!-- VISOR DE LAS 6 FOTOS Y MENSAJES -->
+    <section id="messageViewer" class="message-viewer" aria-hidden="true">
+      <div class="viewer-card">
+
+        <button id="closeViewer" class="close-viewer" aria-label="Cerrar">×</button>
+
+        <div class="photo-box">
+          <img id="photo" src="fotos/foto1.svg" alt="Foto 1">
+        </div>
+
+        <div class="message-box">
+          <h2 id="messageTitle">Para ti 💛</h2>
+          <p id="messageText">
+            Un pequeño detalle para recordarte lo especial que eres.
+          </p>
+        </div>
+
+        <div class="viewer-bottom">
+          <button id="previous" class="nav-button" aria-label="Foto anterior">‹</button>
+
+          <div id="indicators" class="indicators"></div>
+
+          <button id="next" class="nav-button" aria-label="Foto siguiente">›</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
