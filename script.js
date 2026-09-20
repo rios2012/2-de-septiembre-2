@@ -4,6 +4,9 @@
 
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
+// Obtener elementos
+const messageButton = document.getElementById('messageButton');
+const bgMusic = document.getElementById('bgMusic');
 
 let width = 0;
 let height = 0;
@@ -291,11 +294,6 @@ document
 
     showMessage();
   }, { passive: true });
-// Obtener elementos
-const messageButton = document.getElementById('messageButton');
-const bgMusic = document.getElementById('bgMusic');
-
-// ... resto de tus variables de elementos (photo, viewer, etc.) ...
 
 let isMusicPlaying = false;
 
