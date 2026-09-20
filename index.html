@@ -8,6 +8,9 @@
 </head>
 <body>
 
+  <!-- ELEMENTO DE AUDIO AGREGADO -->
+  <audio id="bgMusic" src="musica.mp3" preload="auto" loop></audio>
+
   <div class="scene">
     <canvas id="particles"></canvas>
 
@@ -17,7 +20,7 @@
       <p>Ten tu ramo bonita</p>
     </header>
 
-    <!-- MARIPOSAS PEQUEÑAS -->
+    <!-- MARIPOSAS ALREDEDOR DEL RAMO (AMPLIADAS) -->
     <div class="butterflies" aria-hidden="true">
       <span class="butterfly b1">🦋</span>
       <span class="butterfly b2">🦋</span>
@@ -25,6 +28,12 @@
       <span class="butterfly b4">🦋</span>
       <span class="butterfly b5">🦋</span>
       <span class="butterfly b6">🦋</span>
+      <span class="butterfly b7">🦋</span>
+      <span class="butterfly b8">🦋</span>
+      <span class="butterfly b9">🦋</span>
+      <span class="butterfly b10">🦋</span>
+      <span class="butterfly b11">🦋</span>
+      <span class="butterfly b12">🦋</span>
     </div>
 
     <!-- RAMO DE FLORES PRINCIPAL -->
@@ -87,7 +96,7 @@
                         <!-- Tallo verde base -->
                         <path d="M0,0 L0,120" stroke="#2e5a1c" stroke-width="12" stroke-linecap="round"/>
                         
-                        <!-- Capa 1: Pétalos Traseros (Naranja/Amarillo) -->
+                        <!-- Capa 1: Pétalos Traseros -->
                         <g>
                             <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)"/>
                             <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(15)"/>
@@ -115,7 +124,7 @@
                             <path d="M0,-22 C-9,-40 -12,-75 0,-92 C12,-75 9,-40 0,-22 Z" fill="url(#petalGrad1)" transform="rotate(345)"/>
                         </g>
 
-                        <!-- Capa 2: Pétalos Delanteros Intercalados -->
+                        <!-- Capa 2: Pétalos Delanteros -->
                         <g>
                             <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(7.5)"/>
                             <path d="M0,-20 C-7,-35 -10,-68 0,-84 C10,-68 7,-35 0,-20 Z" fill="url(#petalGrad2)" transform="rotate(22.5)"/>
@@ -239,7 +248,7 @@
       </span>
     </button>
 
-    <!-- VISOR DE LAS 6 FOTOS Y MENSAJES -->
+    <!-- VISOR DE FOTOS Y MENSAJES -->
     <section id="messageViewer" class="message-viewer" aria-hidden="true">
       <div class="viewer-card">
 
@@ -258,9 +267,7 @@
 
         <div class="viewer-bottom">
           <button id="previous" class="nav-button" aria-label="Foto anterior">‹</button>
-
           <div id="indicators" class="indicators"></div>
-
           <button id="next" class="nav-button" aria-label="Foto siguiente">›</button>
         </div>
       </div>
