@@ -106,13 +106,13 @@ button {
 }
 
 /* =========================
-   MARIPOSAS PEQUEÑAS
+   MARIPOSAS (ENMARCANDO EL RAMO)
    ========================= */
 
 .butterflies {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 4; /* Sobre las flores */
   pointer-events: none;
 }
 
@@ -121,19 +121,27 @@ button {
   display: block;
   font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
   font-size: 16px;
-  filter: drop-shadow(0 0 4px rgba(255, 219, 35, .75));
+  filter: drop-shadow(0 0 6px rgba(255, 219, 35, 0.85));
   animation:
     butterflyFloat 4.8s ease-in-out infinite,
     butterflyBlink 2.8s ease-in-out infinite;
 }
 
-.b1 { left: 14%; bottom: 27%; animation-delay: -.7s; }
-.b2 { left: 24%; bottom: 43%; font-size: 13px; animation-delay: -2.1s; }
-.b3 { right: 14%; bottom: 31%; font-size: 17px; animation-delay: -1.4s; }
-.b4 { right: 25%; bottom: 46%; font-size: 12px; animation-delay: -3.2s; }
-.b5 { left: 39%; bottom: 23%; font-size: 11px; animation-delay: -2.7s; }
-.b6 { right: 37%; bottom: 24%; font-size: 10px; animation-delay: -.2s; }
+/* Distribuidas alrededor del ramo y pantalla */
+.b1  { left: 12%; bottom: 27%; font-size: 18px; animation-delay: -.7s; }
+.b2  { left: 22%; bottom: 45%; font-size: 14px; animation-delay: -2.1s; }
+.b3  { right: 12%; bottom: 31%; font-size: 20px; animation-delay: -1.4s; }
+.b4  { right: 22%; bottom: 48%; font-size: 13px; animation-delay: -3.2s; }
+.b5  { left: 35%; bottom: 20%; font-size: 15px; animation-delay: -2.7s; }
+.b6  { right: 33%; bottom: 22%; font-size: 12px; animation-delay: -.2s; }
 
+/* Nuevas mariposas rodeando las flores */
+.b7  { left: 28%; bottom: 35%; font-size: 16px; animation-delay: -1.1s; }
+.b8  { right: 28%; bottom: 38%; font-size: 17px; animation-delay: -2.5s; }
+.b9  { left: 42%; bottom: 50%; font-size: 13px; animation-delay: -0.5s; }
+.b10 { right: 40%; bottom: 53%; font-size: 15px; animation-delay: -3.8s; }
+.b11 { left: 18%; bottom: 15%; font-size: 14px; animation-delay: -1.9s; }
+.b12 { right: 16%; bottom: 18%; font-size: 16px; animation-delay: -0.3s; }
 /* =========================
    BOTÓN (INTERACTIVO Y SOBREPUESTO)
    ========================= */
