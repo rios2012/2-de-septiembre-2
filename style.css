@@ -1,4 +1,4 @@
-** {
+* {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
@@ -23,6 +23,7 @@ button {
 .scene {
   position: relative;
   width: 100%;
+  height: 100vh;
   height: 100dvh;
   min-height: 600px;
   overflow: hidden;
@@ -62,7 +63,8 @@ button {
   width: 100%;
   height: 100%;
   display: block;
-  z-index: 2;
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* =========================
@@ -110,7 +112,7 @@ button {
 .butterflies {
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -119,70 +121,35 @@ button {
   display: block;
   font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
   font-size: 16px;
-  filter:
-    drop-shadow(0 0 4px rgba(255, 219, 35, .75));
+  filter: drop-shadow(0 0 4px rgba(255, 219, 35, .75));
   animation:
     butterflyFloat 4.8s ease-in-out infinite,
     butterflyBlink 2.8s ease-in-out infinite;
 }
 
-.b1 {
-  left: 14%;
-  bottom: 27%;
-  animation-delay: -.7s;
-}
-
-.b2 {
-  left: 24%;
-  bottom: 43%;
-  font-size: 13px;
-  animation-delay: -2.1s;
-}
-
-.b3 {
-  right: 14%;
-  bottom: 31%;
-  font-size: 17px;
-  animation-delay: -1.4s;
-}
-
-.b4 {
-  right: 25%;
-  bottom: 46%;
-  font-size: 12px;
-  animation-delay: -3.2s;
-}
-
-.b5 {
-  left: 39%;
-  bottom: 23%;
-  font-size: 11px;
-  animation-delay: -2.7s;
-}
-
-.b6 {
-  right: 37%;
-  bottom: 24%;
-  font-size: 10px;
-  animation-delay: -.2s;
-}
+.b1 { left: 14%; bottom: 27%; animation-delay: -.7s; }
+.b2 { left: 24%; bottom: 43%; font-size: 13px; animation-delay: -2.1s; }
+.b3 { right: 14%; bottom: 31%; font-size: 17px; animation-delay: -1.4s; }
+.b4 { right: 25%; bottom: 46%; font-size: 12px; animation-delay: -3.2s; }
+.b5 { left: 39%; bottom: 23%; font-size: 11px; animation-delay: -2.7s; }
+.b6 { right: 37%; bottom: 24%; font-size: 10px; animation-delay: -.2s; }
 
 /* =========================
-   BOTÓN
+   BOTÓN (INTERACTIVO Y SOBREPUESTO)
    ========================= */
 
 .message-button {
   position: absolute;
-  z-index: 10;
-  right: clamp(24px, 7vw, 80px);
-  bottom: clamp(55px, 10vh, 100px);
+  z-index: 50; /* Prioridad de toque super alta */
+  right: clamp(20px, 7vw, 80px);
+  bottom: clamp(40px, 8vh, 100px);
 
-  width: clamp(68px, 10vw, 86px);
-  height: clamp(68px, 10vw, 86px);
+  width: clamp(64px, 12vw, 86px);
+  height: clamp(64px, 12vw, 86px);
 
   border-radius: 50%;
   border: 2px solid rgba(232, 205, 21, 0.95);
-  background: rgba(10, 13, 2, 0.72);
+  background: rgba(10, 13, 2, 0.85);
 
   box-shadow:
     0 0 0 1px rgba(255, 223, 42, 0.18),
@@ -195,6 +162,8 @@ button {
 
   padding: 0;
   cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
   animation: buttonPulse 2.7s ease-in-out infinite;
 }
 
@@ -250,7 +219,7 @@ button {
 .message-viewer {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 100;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -258,7 +227,6 @@ button {
   padding: 0 15px 24px;
 
   background: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(0);
 
   opacity: 0;
   visibility: hidden;
@@ -267,7 +235,6 @@ button {
   transition:
     opacity .38s ease,
     background .38s ease,
-    backdrop-filter .38s ease,
     visibility .38s ease;
 }
 
@@ -275,15 +242,17 @@ button {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  background: rgba(0, 0, 0, .42);
+  background: rgba(0, 0, 0, .65);
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
 
 .viewer-card {
   position: relative;
   width: min(100%, 430px);
-  max-height: 90dvh;
-  overflow: hidden;
+  max-height: 85vh;
+  max-height: 85dvh;
+  overflow-y: auto;
 
   padding: 14px 14px 16px;
 
@@ -293,8 +262,8 @@ button {
   background:
     linear-gradient(
       180deg,
-      rgba(24, 27, 10, .97),
-      rgba(6, 8, 3, .98)
+      rgba(24, 27, 10, .98),
+      rgba(6, 8, 3, .99)
     );
 
   box-shadow:
@@ -311,7 +280,7 @@ button {
 
 .close-viewer {
   position: absolute;
-  z-index: 4;
+  z-index: 10;
   top: 7px;
   right: 9px;
 
@@ -321,24 +290,24 @@ button {
   border: 0;
   border-radius: 50%;
 
-  background: rgba(0, 0, 0, .45);
+  background: rgba(0, 0, 0, .6);
   color: #f2d52a;
 
   font-size: 31px;
   line-height: 1;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .photo-box {
   width: 100%;
-  height: min(50vh, 360px);
-  min-height: 220px;
+  height: 40vh;
+  min-height: 200px;
 
   overflow: hidden;
   border-radius: 16px;
 
   background: #171b0c;
-
   border: 1px solid rgba(255, 217, 38, .14);
 }
 
@@ -347,10 +316,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-
-  transition:
-    opacity .28s ease,
-    transform .35s ease;
+  transition: opacity .28s ease, transform .35s ease;
 }
 
 .message-box {
@@ -361,7 +327,7 @@ button {
 .message-box h2 {
   margin: 0 0 7px;
   color: #f3d72a;
-  font-size: clamp(22px, 5vw, 29px);
+  font-size: clamp(20px, 5vw, 29px);
   font-weight: 600;
   text-shadow: 0 0 9px rgba(244, 211, 30, .25);
 }
@@ -370,7 +336,7 @@ button {
   margin: 0 auto;
   max-width: 370px;
   color: rgba(255, 255, 255, .93);
-  font-size: clamp(15px, 4vw, 19px);
+  font-size: clamp(14px, 4vw, 19px);
   line-height: 1.35;
 }
 
@@ -395,6 +361,7 @@ button {
   font-size: 30px;
   line-height: 30px;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .nav-button:active {
@@ -431,7 +398,6 @@ button {
     opacity: 0;
     transform: translateY(-18px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -439,23 +405,13 @@ button {
 }
 
 @keyframes butterflyFloat {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) rotate(-7deg);
-  }
-
-  50% {
-    transform: translate3d(8px, -14px, 0) rotate(8deg);
-  }
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-7deg); }
+  50% { transform: translate3d(8px, -14px, 0) rotate(8deg); }
 }
 
 @keyframes butterflyBlink {
-  0%, 100% {
-    opacity: .45;
-  }
-
-  50% {
-    opacity: .95;
-  }
+  0%, 100% { opacity: .45; }
+  50% { opacity: .95; }
 }
 
 @keyframes buttonPulse {
@@ -466,7 +422,6 @@ button {
       0 0 15px rgba(244, 211, 22, .24),
       inset 0 0 14px rgba(255, 221, 32, .05);
   }
-
   50% {
     transform: scale(1.045);
     box-shadow:
@@ -481,48 +436,9 @@ button {
     transform: scale(.96);
     opacity: .35;
   }
-
   50% {
     transform: scale(1.09);
     opacity: .05;
-  }
-}
-
-@media (max-width: 600px) {
-  .message-button {
-    right: 30px;
-    bottom: 74px;
-  }
-
-  .texts {
-    top: 38px;
-  }
-
-  .texts h1 {
-    font-size: 35px;
-  }
-
-  .texts p {
-    margin-top: 17px;
-    font-size: 23px;
-  }
-
-  .butterfly {
-    font-size: 13px;
-  }
-
-  .message-viewer {
-    padding: 0 10px 12px;
-  }
-
-  .viewer-card {
-    border-radius: 20px;
-    padding: 11px 11px 13px;
-  }
-
-  .photo-box {
-    height: 43vh;
-    min-height: 210px;
   }
 }
 
@@ -532,19 +448,20 @@ button {
 
 .bouquet-emergence-wrapper {
   position: absolute;
-  bottom: -20px;
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%) translateY(100%);
-  z-index: 4;
+  z-index: 3;
   animation: growFromBottom 2.2s cubic-bezier(0.17, 0.89, 0.32, 1.1) 0.3s 1 forwards;
   transform-origin: bottom center;
-  pointer-events: none;
+  pointer-events: none; /* No intercepta el clic en el teléfono */
 }
 
 .bouquet-sway-wrapper {
   transform-origin: bottom center;
   animation: swayMotion 4.5s ease-in-out infinite alternate;
   animation-delay: 2.5s;
+  pointer-events: none;
 }
 
 @keyframes growFromBottom {
@@ -565,11 +482,12 @@ button {
 }
 
 .bouquet-svg {
-  width: min(90vw, 55vh, 480px);
+  width: min(88vw, 48vh, 440px);
   height: auto;
   aspect-ratio: 500 / 650;
   display: block;
   filter: drop-shadow(0 15px 25px rgba(255, 230, 0, 0.8));
+  pointer-events: none;
 }
 
 #front-wrapper {
@@ -577,13 +495,38 @@ button {
 }
 
 @media (max-width: 600px) {
+  .texts {
+    top: 28px;
+  }
+
+  .texts h1 {
+    font-size: 32px;
+  }
+
+  .texts p {
+    margin-top: 12px;
+    font-size: 20px;
+  }
+
+  .butterfly {
+    font-size: 13px;
+  }
+
+  .message-viewer {
+    padding: 0 10px 12px;
+  }
+
+  .viewer-card {
+    border-radius: 20px;
+    padding: 11px 11px 13px;
+  }
+
   .bouquet-emergence-wrapper {
-    bottom: clamp(-18px, -2vh, -5px);
+    bottom: -5px;
   }
 
   .bouquet-svg {
-    width: min(90vw, 55vh, 480px);
-    height: auto;
+    width: min(85vw, 45vh, 380px);
   }
 
   #front-wrapper text {
@@ -591,14 +534,14 @@ button {
   }
 }
 
-@media (max-height: 700px) {
-  .bouquet-svg {
-    width: min(72vw, 58vh, 440px);
+@media (max-height: 680px) {
+  .texts h1 {
+    font-size: 28px;
   }
-}
-
-@media (max-width: 360px) {
+  .texts p {
+    font-size: 18px;
+  }
   .bouquet-svg {
-    width: min(92vw, 52vh, 340px);
+    width: min(70vw, 42vh, 320px);
   }
 }
